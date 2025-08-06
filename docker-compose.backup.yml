@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  ehr-pipeline:
+    build: .
+    container_name: ehr-pipeline
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python app/main.py

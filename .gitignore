@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Docker-related files you may want to exclude (optional)
+# If you have sensitive config or data volumes, ignore them:
+# docker-compose.override.yml
+# .env
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# IDE/editor specific
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python test cache
+.pytest_cache/
+.coverage
+
+# Secrets or credentials (if any)
+*.pem
+*.key
+
+# macOS system files
+.DS_Store
+
+# Ignore backup or temp files
+*.bak
+*.tmp
