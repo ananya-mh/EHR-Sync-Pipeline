@@ -49,7 +49,7 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: python -u app/producer.py
+    command: python -u app/patient_data.py
     restart: on-failure
 
   # Consumer service (reads from Kafka -> processes -> writes to Postgres)
