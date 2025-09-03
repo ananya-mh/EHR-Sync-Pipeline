@@ -40,10 +40,10 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     restart: unless-stopped
 
-  # Producer service (sends messages to Kafka)
-  producer:
+  # Producer services (send messages to Kafka)
+  producer-patient:
     build: .
-    container_name: ehr-producer
+    container_name: ehr-producer-patient
     depends_on:
       - kafka
     volumes:
@@ -51,6 +51,29 @@ services:
     working_dir: /app
     command: python -u app/patient_data.py
     restart: on-failure
+
+  producer-labs:
+    build: .
+    container_name: ehr-producer-labs
+    depends_on:
+      - kafka
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python -u app/lab_results_data.py
+    restart: on-failure
+
+  producer-meds:
+    build: .
+    container_name: ehr-producer-meds
+    depends_on:
+      - kafka
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python -u app/medications_data.py
+    restart: on-failure
+
 
   # Consumer service (reads from Kafka -> processes -> writes to Postgres)
   consumer:

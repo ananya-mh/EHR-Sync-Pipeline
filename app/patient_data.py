@@ -3,6 +3,7 @@ import json
 import time
 from faker import Faker
 import random
+import uuid
 
 fake = Faker()
 
@@ -16,9 +17,9 @@ producer = KafkaProducer(
 
 while True:
     patient = {
-        "id": fake.random_int(min=1, max=10000),
+        "id": str(uuid.uuid4()),  # generate UUID as string
         "name": fake.name(),
-        "age": random.randint(1, 100),
+        "age": random.randint(0, 120),  # matches CHECK constraint
         "condition": random.choice(conditions)
     }
     producer.send("ehr.patient.events", value=patient)
