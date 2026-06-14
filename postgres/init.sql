@@ -1,18 +1,11 @@
--- CREATE TABLE IF NOT EXISTS patients (
---     id INT PRIMARY KEY,
---     name TEXT,
---     age INT,
---     condition TEXT
--- );
-
--- postgres/init.sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE IF NOT EXISTS patients (
   id UUID PRIMARY KEY,
   name TEXT NOT NULL,
   age INT CHECK (age BETWEEN 0 AND 120),
-  condition TEXT
+  condition TEXT,
+  updated_at TIMESTAMPTZ DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS lab_results (
@@ -23,6 +16,7 @@ CREATE TABLE IF NOT EXISTS lab_results (
   value NUMERIC,
   unit TEXT,
   result_time TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS medications (
@@ -34,5 +28,6 @@ CREATE TABLE IF NOT EXISTS medications (
   route TEXT,
   start_time TIMESTAMPTZ,
   end_time TIMESTAMPTZ,
-  ingested_at TIMESTAMPTZ DEFAULT now()
+  ingested_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
 );

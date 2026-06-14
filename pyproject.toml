@@ -1,0 +1,10 @@
+[project]
+name = "ehr-sync-pipeline"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: tests that require a running PostgreSQL instance",
+]
